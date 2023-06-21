@@ -3,28 +3,36 @@ import '../App.css';
 
 class ToDo extends Component{
     state = {
-        todo: '',
+        todo: [],
         done: ''
       }
   
       onChange=(event)=>{
         const value = event.target.value
         this.setState({
-          todo: value
+          todo: [value]
         })
       }
       
+      addTask=(event)=>{
+        const val = event.target.value
+        this.setState({
+          done: [...val]
+        })
+      }
+
+
       render(){
         return(
           <div className='container'>
             <input type="text" placeholder='type task' onChange={this.onChange} />
             <div className='block'>
               <div className='todo_container'>
-                <p>{this.state.todo}</p>
-                <button>Done</button>
+                <p>TO DO: {this.state.todo}</p>
+                <button onClick={this.addTask}>Done</button>
               </div>
               <div className='done_container'>
-                <p>Done</p>
+                <p>DONE: {this.state.done}</p>
                 <button>mark as a undone</button>
                 <button>Remove</button>
               </div>
